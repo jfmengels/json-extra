@@ -192,7 +192,7 @@ decodeDictFromTuples keyDecoder tuples =
             case decodeString keyDecoder strKey of
                 Ok key ->
                     decodeDictFromTuples keyDecoder rest
-                        |> andThen (Dict.insert key value >> succeed)
+                        |> map (Dict.insert key value)
 
                 Err error ->
                     fail (errorToString error)
